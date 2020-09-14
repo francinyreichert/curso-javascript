@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Curso Javascript</title>
+	</head>
+
+	<body>
+	  
+		<ul></ul>
+
+		<input type="text" name="nome">
+		<button onClick="adicionar()">Adicionar</button>
+
+
+		<button class="botao">Criar quadrado vermelho</button>
+	    <div id="quadrados"></div>
+
+		<script>
+		var btnElement = document.querySelector('button.botao');
+		var quadradoElement = document.getElementById('quadrados');
+		
+		btnElement.onclick = function() {
+			var quadrado = document.createElement('div');
+			quadrado.style.width = 100;
+			quadrado.style.height = 100;
+			quadrado.style.backgroundColor = '#F00';
+
+			quadrado.onmouseover = function() { 
+				quadrado.style.backgroundColor = getRandomColor();
+			};
+
+			quadradoElement.appendChild(quadrado);
+		};
+
+		function getRandomColor() {
+			var letters = "0123456789ABCDEF";
+			var color = "#";
+				for (var i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+				}
+			return color;
+		}
+
+		var nomes = ["Diego", "Gabriel", "Lucas"];
+		var list = document.querySelector('ul');
+		var inputElement = document.querySelector('input[name=nome]');
+		
+		function adicionarItem(item){
+			var listElements = document.createElement('li');
+			var textElement = document.createTextNode(item);
+			listElements.appendChild(textElement);
+			list.appendChild(listElements);
+		}
+		for(nome of nomes){
+			adicionarItem(nome);
+		}
+
+		function adicionar() {
+			var text = inputElement.value;
+			adicionarItem(text);
+			inputElement.value = ""
+		}
+
+		</script>
+	</body>
+</html>
